@@ -6,7 +6,9 @@ from Crypto.Cipher import AES
 def int_to_uuid(value: int, key=b'0' * 16) -> str:
     cipher = AES.new(key, AES.MODE_ECB)
     v = int.to_bytes(value, 16, 'big')
+
     a = cipher.encrypt(v)
+    print(a)
     uid = UUID(bytes=a)
     return str(uid)
 

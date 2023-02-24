@@ -1,9 +1,9 @@
 package main
 
 import (
-	"bytes"
 	"crypto/aes"
 	"encoding/binary"
+	"encoding/hex"
 	"fmt"
 	"github.com/google/uuid"
 )
@@ -31,7 +31,7 @@ func uuidToInt(value string, key []byte) int {
 func main() {
 	value := uint64(1 << 33)
 	fmt.Println(value)
-	key := bytes.Repeat([]byte{0}, 16)
+	key, _ := hex.DecodeString("00000000000000000000000000000000")
 
 	uid := intToUuid(value, key)
 	fmt.Println(uid)

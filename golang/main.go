@@ -8,7 +8,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func intToUuid(value uint64, key []byte) string {
+func int2Uuid(value uint64, key []byte) string {
 	block, _ := aes.NewCipher(key)
 	v := make([]byte, 16)
 	binary.BigEndian.PutUint64(v[8:], value)
@@ -18,7 +18,7 @@ func intToUuid(value uint64, key []byte) string {
 	return uid.String()
 }
 
-func uuidToInt(value string, key []byte) int {
+func uuid2Int(value string, key []byte) int {
 	block, _ := aes.NewCipher(key)
 	parse, _ := uuid.Parse(value)
 	c := make([]byte, 16)
@@ -33,7 +33,7 @@ func main() {
 	fmt.Println(value)
 	key, _ := hex.DecodeString("00000000000000000000000000000000")
 
-	uid := intToUuid(value, key)
+	uid := int2Uuid(value, key)
 	fmt.Println(uid)
-	fmt.Println(uuidToInt(uid, key))
+	fmt.Println(uuid2Int(uid, key))
 }
